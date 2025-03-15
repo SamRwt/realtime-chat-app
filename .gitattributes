@@ -1,0 +1,22 @@
+* text=auto
+
+# convert on checkout
+*.js  text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md  text eol=lf
+*.sh  text eol=lf
+*.yml text eol=lf
+*.env text eol=lf
+
+# should not be modified
+*.png binary
+*.jpg binary
+*.gif binary
+*.svg binary
+
+package-lock.json -text
+yarn.lock -text
+pnpm-lock.yaml -text
