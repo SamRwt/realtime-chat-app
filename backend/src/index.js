@@ -4,11 +4,15 @@ import authRouter from "./routes/auth.route.js";
 import { connectDB } from "./lib/db.js";
 
 const app = express();
+const port = process.env.PORT || 3000;
+
 dotenv.config();
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
     connectDB();
 });
+
+app.use(express.json());
 
 app.use("/api/auth", authRouter);
