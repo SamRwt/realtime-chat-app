@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -6,8 +6,16 @@ import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
+import { useAuthStore } from './store/useAuthStore';
 
 const App = () => {
+  const { authUser, checkAuth } = useAuthStore();
+  
+  useEffect(() => {
+    checkAuth();
+  }
+  , [checkAuth]);
+  
   return (
     <div>
       <Navbar />
