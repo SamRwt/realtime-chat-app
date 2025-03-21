@@ -31,13 +31,29 @@ export const useAuthStore = create((set) => ({
         }
         catch (error) {
             console.log("Error in signUp:", error);
-            toast.error(error.response.data.message);
+            toast.error(error.response.data);
         }
         finally {
             set({ isSigningUp: false });
         }
     },
 
+    login: async (formData) => {
+        set( { isLoggingIn: true });
+        try {
+            const response = await axiosInstance.post("/auth/login", formData);
+            set({ authUser: response.data });
+            toast.success("Logged in successfully");
+        }
+        catch (error) {
+            console.log("Error in login:", error);
+            toast.error(error.response.data);
+        }
+        finally {
+            set({ isLoggingIn: false });
+        }
+    },
+    
     logout: async () => {
         try {
             await axiosInstance.post("/auth/logout");
@@ -46,7 +62,7 @@ export const useAuthStore = create((set) => ({
         }
         catch (error) {
             console.log("Error in logout:", error);
-            toast.error(error.response.data.message);
+            toast.error(error.response.data);
         }
     },
 }));
